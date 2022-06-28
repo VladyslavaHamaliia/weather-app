@@ -34,6 +34,7 @@ section {
   border: 1px solid #e0a800;
   border-radius: 10px;
   text-align: center;
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2);
 }
 .icon-bar {
   font-size: 17px;
