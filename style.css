@@ -1,3 +1,63 @@
-h1 {
-  color: aqua;
+.card {
+  border: 1px solid #e0a800;
+  border-radius: 4px;
+  padding: 50px;
+  margin-top: 50px;
+}
+.title {
+  text-align: center;
+  font-size: 58px;
+  color: #e0a800;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+.weather-box {
+  color: #183153;
+}
+.city {
+  padding-top: 50px;
+  font-size: 45px;
+}
+section {
+  padding-top: 40px;
+}
+.icon-main {
+  font-size: 70px;
+  color: #e0a800;
+}
+.temp-main {
+  font-size: 45px;
+}
+.weather-tile {
+  border: 1px solid #e0a800;
+  border-radius: 10px;
+  text-align: center;
+}
+.icon-bar {
+  font-size: 17px;
+  color: #e0a800;
+}
+.days {
+  font-family: "Roboto", sans-serif;
+  color: #183153;
+}
+.temp-bar {
+  font-size: 22px;
+  font-weight: 600;
+}
+.units {
+  position: relative;
+  top: -20px;
+}
+#celcius-link {
+  color: #e0a800;
+  text-decoration: none;
+}
+#fahrenheit-link {
+  color: #e0a800;
+  text-decoration: none;
+}
+#geolocation-button {
+  margin-left: 10px;
 }
