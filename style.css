@@ -1,5 +1,5 @@
 .card {
-  border: 2px solid #e0a800;
+  border: 2px solid #ec6e4c;
   border-radius: 5px;
   padding: 50px;
   margin-top: 50px;
@@ -9,7 +9,7 @@
 .title {
   text-align: center;
   font-size: 40px;
-  color: #e0a800;
+  color: #ec6e4c;
 }
 body {
   font-family: "Roboto", sans-serif;
@@ -26,20 +26,20 @@ section {
 }
 .icon-main {
   font-size: 70px;
-  color: #e0a800;
+  color: #ec6e4c;
 }
 .temp-main {
   font-size: 45px;
 }
 .weather-tile {
-  border: 1px solid #e0a800;
+  border: 1px solid #ec6e4c;
   border-radius: 10px;
   text-align: center;
   box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2);
 }
 .icon-bar {
   font-size: 17px;
-  color: #e0a800;
+  color: #ec6e4c;
 }
 .days {
   font-family: "Roboto", sans-serif;
@@ -54,11 +54,11 @@ section {
   top: -20px;
 }
 #celcius-link {
-  color: #e0a800;
+  color: #ec6e4c;
   text-decoration: none;
 }
 #fahrenheit-link {
-  color: #e0a800;
+  color: #ec6e4c;
   text-decoration: none;
 }
 #geolocation-button {
