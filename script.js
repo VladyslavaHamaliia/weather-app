@@ -57,6 +57,8 @@ function changeCity(event) {
 let cityForm = document.querySelector("#search-bar");
 cityForm.addEventListener("submit", changeCity);
 
+search("Milan");
+
 function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
