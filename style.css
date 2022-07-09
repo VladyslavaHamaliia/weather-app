@@ -53,14 +53,11 @@ section {
   position: relative;
   top: -20px;
 }
-#celcius-link {
-  color: #ec6e4c;
-  text-decoration: none;
-}
-#fahrenheit-link {
-  color: #ec6e4c;
-  text-decoration: none;
-}
 #geolocation-button {
   margin-left: 10px;
+}
+.temp-whole .active {
+  color: #ec6e4c;
+  cursor: default;
+  text-decoration: none;
 }

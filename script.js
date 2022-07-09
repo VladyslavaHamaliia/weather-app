@@ -23,7 +23,8 @@ mainDate.innerHTML = `${currentWeekday}, ${currentHours}:${currentMinutes}`;
 
 function showTemperature(response) {
   document.querySelector("#main-city").innerHTML = response.data.name;
-  let temperature = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+  let temperature = Math.round(celsiusTemperature);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = `${temperature}`;
   let humidity = response.data.main.humidity;
@@ -39,7 +40,23 @@ function showTemperature(response) {
     "src",
     ` http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  console.log(response.data.weather[0].icon);
+}
+
+function diplayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = fahrenheitTemperature;
+}
+
+function diplayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 function changeCity(event) {
@@ -71,23 +88,11 @@ function searchLocation(position) {
 let currentLocationButton = document.querySelector("#geolocation-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
+let celsiusLink = document.querySelector("#celcius-link");
+celsiusLink.addEventListener("click", diplayCelsiusTemperature);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", diplayFahrenheitTemperature);
+
+let celsiusTemperature = null;
 search("Milan");
-
-// // function changeTempToCels(event) {
-//   event.preventDefault();
-//   let temperatureElement = document.querySelector("#temperature");
-//   temperatureElement.innerHTML = currentTempInCels;
-// }
-
-// let celsiuselement = document.querySelector("#celcius-link");
-// celsiuselement.addEventListener("click", changeTempToCels);
-
-// function changeTempToFahr(event) {
-//   event.preventDefault();
-//   let temperatureElement = document.querySelector("#temperature");
-//   let currentTempInFahr = Math.round((currentTempInCels * 9) / 5 + 32);
-//   temperatureElement.innerHTML = currentTempInFahr;
-// }
-
-// let fahrenheitElement = document.querySelector("#fahrenheit-link");
-// fahrenheitElement.addEventListener("click", changeTempToFahr);
