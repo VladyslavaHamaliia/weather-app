@@ -25,7 +25,7 @@ function showTemperature(response) {
   document.querySelector("#main-city").innerHTML = response.data.name;
   celsiusTemperature = response.data.main.temp;
   displayTemperature();
-  // 5. reuse function displayTemperature()
+
   let humidity = response.data.main.humidity;
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${humidity}%`;
@@ -47,8 +47,6 @@ function diplayFahrenheitTemperature(event) {
   fahrenheitLink.classList.add("active");
   isSelectedUnitCelsius = false;
   displayTemperature();
-  // 3.1 reuse function displayTemperature()
-  // 3.2 store selected metric in variable defined in #1
 }
 
 function diplayCelsiusTemperature(event) {
@@ -57,8 +55,6 @@ function diplayCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   isSelectedUnitCelsius = true;
   displayTemperature();
-  // 4.1 reuse function displayTemperature()
-  // 4.2 store selected metric in variable defined in #1
 }
 
 function displayTemperature() {
@@ -69,9 +65,6 @@ function displayTemperature() {
     temperatureElement.innerHTML = Math.round(
       (celsiusTemperature * 9) / 5 + 32
     );
-    // 2. check which metric is selected
-    // if celcius, then update element with id #temperature with value of celsiusTemperature
-    // if fahrenheit - calculate temp in fahrenheit and update element with id #temperature
   }
 }
 
@@ -118,4 +111,3 @@ let celsiusTemperature = null;
 requestTemperature("Milan");
 
 let isSelectedUnitCelsius = true;
-// 1. define variable where the selected metric is stored
