@@ -24,9 +24,8 @@ mainDate.innerHTML = `${currentWeekday}, ${currentHours}:${currentMinutes}`;
 function showTemperature(response) {
   document.querySelector("#main-city").innerHTML = response.data.name;
   celsiusTemperature = response.data.main.temp;
-  let temperature = Math.round(celsiusTemperature);
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = `${temperature}`;
+  displayTemperature();
+  // 5. reuse function displayTemperature()
   let humidity = response.data.main.humidity;
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${humidity}%`;
@@ -44,19 +43,36 @@ function showTemperature(response) {
 
 function diplayFahrenheitTemperature(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
-  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
-  temperatureElement.innerHTML = fahrenheitTemperature;
+  isSelectedUnitCelsius = false;
+  displayTemperature();
+  // 3.1 reuse function displayTemperature()
+  // 3.2 store selected metric in variable defined in #1
 }
 
 function diplayCelsiusTemperature(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  isSelectedUnitCelsius = true;
+  displayTemperature();
+  // 4.1 reuse function displayTemperature()
+  // 4.2 store selected metric in variable defined in #1
+}
+
+function displayTemperature() {
+  let temperatureElement = document.querySelector("#temperature");
+  if (isSelectedUnitCelsius === true) {
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  } else {
+    temperatureElement.innerHTML = Math.round(
+      (celsiusTemperature * 9) / 5 + 32
+    );
+    // 2. check which metric is selected
+    // if celcius, then update element with id #temperature with value of celsiusTemperature
+    // if fahrenheit - calculate temp in fahrenheit and update element with id #temperature
+  }
 }
 
 function changeCity(event) {
@@ -100,3 +116,6 @@ fahrenheitLink.addEventListener("click", diplayFahrenheitTemperature);
 
 let celsiusTemperature = null;
 requestTemperature("Milan");
+
+let isSelectedUnitCelsius = true;
+// 1. define variable where the selected metric is stored
