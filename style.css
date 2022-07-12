@@ -42,6 +42,7 @@ section {
   color: #ec6e4c;
 }
 .days {
+  font-size: 16px;
   font-family: "Roboto", sans-serif;
   color: #183153;
 }
@@ -60,4 +61,7 @@ section {
   color: #ec6e4c;
   cursor: default;
   text-decoration: none;
+}
+.weather-min-temp {
+  opacity: 0.5;
 }
