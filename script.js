@@ -21,6 +21,37 @@ let days = [
 let currentWeekday = days[now.getDay()];
 mainDate.innerHTML = `${currentWeekday}, ${currentHours}:${currentMinutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-sm-2">
+                <div class="weather-tile">
+                  <div class="days">${day}</div>
+                  <div class="date-bar">04/06</div>
+                  <div class="icon-bar">
+                    <img
+                      src="http://openweathermap.org/img/wn/10d@2x.png"
+                      alt="sunny"
+                      width="65px"
+                    />
+                  </div>
+                  <div class="temp-bar">
+                    <span class="weather-max-temp">28°</span>
+                    <span class="weather-min-temp">16°</span>
+                  </div>
+                </div>
+              </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   document.querySelector("#main-city").innerHTML = response.data.name;
   celsiusTemperature = response.data.main.temp;
@@ -97,6 +128,7 @@ function searchLocation(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
+displayForecast();
 
 let currentLocationButton = document.querySelector("#geolocation-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
