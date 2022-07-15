@@ -9,43 +9,66 @@ if (currentMinutes < 10) {
   currentMinutes = `0${currentMinutes}`;
 }
 let days = [
+  "Sunday",
   "Monday",
   "Tuesday",
   "Wednesday",
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 ];
 
 let currentWeekday = days[now.getDay()];
 mainDate.innerHTML = `${currentWeekday}, ${currentHours}:${currentMinutes}`;
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.daily;
+
   let forecastHTML = `<div class="row">`;
-  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-sm-2">
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-sm-2">
                 <div class="weather-tile">
-                  <div class="days">${day}</div>
-                  <div class="date-bar">04/06</div>
+                  <div class="days">${formatDay(forecastDay.dt)}</div>
+                  <div class="date-bar"></div>
                   <div class="icon-bar">
                     <img
-                      src="http://openweathermap.org/img/wn/10d@2x.png"
+                      src="http://openweathermap.org/img/wn/${
+                        forecastDay.weather[0].icon
+                      }@2x.png"
                       alt="sunny"
                       width="65px"
                     />
                   </div>
                   <div class="temp-bar">
-                    <span class="weather-max-temp">28°</span>
-                    <span class="weather-min-temp">16°</span>
+                    <span class="weather-max-temp">${Math.round(
+                      forecastDay.temp.max
+                    )}°</span>
+                    <span class="weather-min-temp">${Math.round(
+                      forecastDay.temp.min
+                    )}°</span>
                   </div>
                 </div>
               </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -54,7 +77,7 @@ function displayForecast(response) {
 
 function getForecast(coordinates) {
   let apiKey = "b48f214fdacd498623137e3a61d506e5";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 
