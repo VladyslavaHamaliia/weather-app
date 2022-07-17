@@ -83,8 +83,8 @@ function getForecast(coordinates) {
 
 function showTemperature(response) {
   document.querySelector("#main-city").innerHTML = response.data.name;
-  celsiusTemperature = response.data.main.temp;
-  displayTemperature();
+
+  displayTemperature(response.data.main.temp);
 
   let humidity = response.data.main.humidity;
   let humidityElement = document.querySelector("#humidity");
@@ -102,31 +102,10 @@ function showTemperature(response) {
   getForecast(response.data.coord);
 }
 
-function diplayFahrenheitTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  isSelectedUnitCelsius = false;
-  displayTemperature();
-}
-
-function diplayCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  isSelectedUnitCelsius = true;
-  displayTemperature();
-}
-
-function displayTemperature() {
+function displayTemperature(temperature) {
   let temperatureElement = document.querySelector("#temperature");
-  if (isSelectedUnitCelsius === true) {
-    temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  } else {
-    temperatureElement.innerHTML = Math.round(
-      (celsiusTemperature * 9) / 5 + 32
-    );
-  }
+
+  temperatureElement.innerHTML = Math.round(temperature);
 }
 
 function changeCity(event) {
@@ -162,13 +141,4 @@ function searchLocation(position) {
 let currentLocationButton = document.querySelector("#geolocation-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-let celsiusLink = document.querySelector("#celcius-link");
-celsiusLink.addEventListener("click", diplayCelsiusTemperature);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", diplayFahrenheitTemperature);
-
-let celsiusTemperature = null;
 requestTemperature("Milan");
-
-let isSelectedUnitCelsius = true;
